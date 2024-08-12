@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %} Katiyar {% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to Katiyar's Django project</h1>
+
+<a class="btn btn-primary mb-4" href="{% url 'kweet_create' %}">Create New Kweet</a>
+
+<div class="container row gap-3">
+  {% for kweet in kweets %}
+  <div class="card" style="width: 18rem">
+    <img
+      src="{% if kweet.photo %}{{ kweet.photo.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}"
+      class="card-img-top"
+      alt="Kweet Photo"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ kweet.user.username }}</h5>
+      <p class="card-text">{{ kweet.text }}</p>
+      {% if kweet.user == user %}
+      <a href="{% url 'kweet_edit' kweet.id %}" class="btn btn-primary">Edit</a>
+      <a href="{% url 'kweet_delete' kweet.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
