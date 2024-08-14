@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Kweet
 from .forms import KweetForm, UserRegistrationForm
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
 def test_view(request):
@@ -56,9 +55,7 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password1'])
-            user.save()
+            user = form.save()
             login(request, user)
             return redirect('kweet_list')
     else:
