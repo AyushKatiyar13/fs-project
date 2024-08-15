@@ -29,6 +29,17 @@ Including another URLconf
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.conf import settings
+# from django.conf.urls.static import static
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('kweet.urls')),  # Your app URLs
+#     path('accounts/', include('django.contrib.auth.urls')),  # Auth URLs including logout
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -38,4 +49,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('kweet.urls')),  # Your app URLs
     path('accounts/', include('django.contrib.auth.urls')),  # Auth URLs including logout
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Only include media URL serving in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
