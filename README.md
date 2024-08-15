@@ -2,6 +2,10 @@
 
 Welcome to the Kwitter project repository! This project is a web application that allows users to create, edit, delete, and view posts (Kweets). The project is built using Django for the backend and includes various functionalities for user authentication and CRUD operations on Kweets.
 
+## Live Demo
+
+You can view the live application at [Kwitter](https://fs-project.onrender.com).
+
 ## Table of Contents
 
 1. [Technologies Used](#technologies-used)
